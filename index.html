@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MineSweeper</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body onload="initGame()" oncontextmenu="return false;">
+    <div class="title">MineSweeper</div>
+    <div class="time-mines">
+      <div class="stopwatch">Time: 0</div>
+      <div class="lives"></div>
+      <div class="mines-left">Mines: 2</div>
+    </div>
+
+    <div class="levels">
+      <button class="btn-level" value="4" onclick="selectLevels(value)">
+        Beginner
+      </button>
+      <button class="btn-level" value="8" onclick="selectLevels(value)">
+        Medium
+      </button>
+      <button class="btn-level" value="12" onclick="selectLevels(value)">
+        Expert
+      </button>
+    </div>
+    <div class="smiley-div">
+      <span onclick="initAfterLevelSelect()" class="smiley">😀</span>
+    </div>
+    <div class="main-table">
+      <table>
+        <tbody class="board"></tbody>
+      </table>
+    </div>
+
+    <div class="footer">Project By: Bar Ohayon</div>
+
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
