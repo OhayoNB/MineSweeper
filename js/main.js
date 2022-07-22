@@ -211,11 +211,16 @@ function cellClicked(elCell, i, j, event) {
   checkGameOver()
 }
 
-function displayRemainedMines() {
-  var elMinesLeft = document.querySelector('.mines-left')
-  var minesLeft = gLevel.MINES - (3 - gLivesLeft)
+function checkGameOver() {
+  const cellsWithoutMines = gLevel.SIZE ** 2 - gLevel.MINES
+  const livesInUse = 3 - gLivesLeft
 
-  elMinesLeft.innerText = `Mines: ${minesLeft - gGame.markedCount}`
+  if (
+    gGame.shownCount - livesInUse === cellsWithoutMines &&
+    gGame.markedCount + livesInUse === gLevel.MINES
+  ) {
+    gameWin()
+  }
 }
 
 function gameLose() {
@@ -234,8 +239,6 @@ function gameWin() {
 
   document.querySelector('.smiley').innerText = WIN
   gIsBoardClickable = false
-
-  console.log('game win')
 }
 
 function revealMines() {
@@ -246,18 +249,6 @@ function revealMines() {
     }
   }
   renderBoard(gBoard)
-}
-
-function checkGameOver() {
-  const cellsWithoutMines = gLevel.SIZE ** 2 - gLevel.MINES
-  const livesInUse = 3 - gLivesLeft
-
-  if (
-    gGame.shownCount - livesInUse === cellsWithoutMines &&
-    gGame.markedCount + livesInUse === gLevel.MINES
-  ) {
-    gameWin()
-  }
 }
 
 function expandShown(board, elCell, cellI, cellJ) {
@@ -281,4 +272,11 @@ function displayStopwatch() {
   var s = gSeconds
   var elStopWatch = document.querySelector('.stopwatch')
   elStopWatch.innerHTML = `Time: ${s}`
+}
+
+function displayRemainedMines() {
+  var elMinesLeft = document.querySelector('.mines-left')
+  var minesLeft = gLevel.MINES - (3 - gLivesLeft)
+
+  elMinesLeft.innerText = `Mines: ${minesLeft - gGame.markedCount}`
 }
